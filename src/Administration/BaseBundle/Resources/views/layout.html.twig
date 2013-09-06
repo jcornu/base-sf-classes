@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
+<!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
+<!--[if !IE]><!--> <html lang="en"> <!--<![endif]-->
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <meta content="" name="description" />
+    <meta content="" name="author" />    
+  
+       
+ 	{% stylesheets output='css/*.css' filter='cssrewrite' debug=false
+ 	
+	    'bundles/base/plugins/bootstrap/css/bootstrap.min.css'
+        'bundles/base/plugins/bootstrap/css/bootstrap-responsive.min.css'
+        'bundles/base/plugins/font-awesome/css/font-awesome.css'
+        'bundles/base/css/style-metro.css'
+        'bundles/base/css/style.css'
+        'bundles/base/css/style-responsive.css'
+        'bundles/base/css/themes/default.css'
+        'bundles/base/plugins/uniform/css/uniform.default.css'
+        'bundles/base/plugins/bootstrap-toggle-buttons/static/stylesheets/bootstrap-toggle-buttons.css'
+        'bundles/base/plugins/bootstrap-datepicker/css/datepicker.css'
+        'bundles/base/plugins/chosen-bootstrap/chosen/chosen.css'
+        
+        
+
+	%}	
+	<link href="{{ asset_url }}" type="text/css" rel="stylesheet" media="screen" />
+	{% endstylesheets %}
+
+  
+    {% javascripts output='js/*.js' 
+   
+        'bundles/base/plugins/jquery-1.10.1.min.js'     
+        'bundles/base/plugins/jquery-migrate-1.2.1.min.js'     
+        'bundles/base/plugins/jquery-ui/jquery-ui-1.10.1.custom.min.js'     
+        'bundles/base/plugins/bootstrap/js/bootstrap.min.js'     
+        'bundles/base/plugins/jquery-slimscroll/jquery.slimscroll.min.js'     
+        'bundles/base/plugins/jquery.blockui.min.js'     
+        'bundles/base/plugins/jquery.cookie.min.js'     
+        'bundles/base/plugins/uniform/jquery.uniform.min.js'     
+        'bundles/base/scripts/app.js'     
+        'bundles/base/plugins/bootstrap-toggle-buttons/static/js/jquery.toggle.buttons.js'
+        'bundles/base/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js'
+        'bundles/base/plugins/chosen-bootstrap/chosen/chosen.jquery.min.js'
+        
+
+
+
+ 
+    %}
+    <script type="text/javascript" src="{{ asset_url }}"></script>  
+    {% endjavascripts %}
+        
+
+ 
+</head>
+
+<body class="page-header-fixed page-full-width">
+
+    {% include 'BaseBundle::header.html.twig'  %} 
+
+
+    <!-- BEGIN CONTAINER -->   
+    <div class="page-container row-fluid" >
+
+
+         {% block content %}     
+         {% endblock %}         
+    </div>
+    <!-- END CONTAINER -->
+
+    {% include 'BaseBundle::footer.html.twig'  %} 
+ 
+
+
+    <script>
+        jQuery(document).ready(function() {    
+           App.init();
+        });
+    </script>
+    <!-- END JAVASCRIPTS -->
+</body>
+</html>

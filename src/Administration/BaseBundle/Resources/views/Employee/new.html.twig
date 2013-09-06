@@ -1,0 +1,82 @@
+{% extends "BaseBundle::layout.html.twig" %}
+{% block content %}
+
+		<!-- BEGIN PAGE -->
+		<div class="page-content">
+			<!-- BEGIN SAMPLE PORTLET CONFIGURATION MODAL FORM-->
+			<div id="portlet-config" class="modal hide">
+				<div class="modal-header">
+					<button data-dismiss="modal" class="close" type="button"></button>
+					<h3>portlet Settings</h3>
+				</div>
+				<div class="modal-body">
+					<p>Here will be a configuration form</p>
+				</div>
+			</div>
+			<!-- END SAMPLE PORTLET CONFIGURATION MODAL FORM-->
+			<!-- BEGIN PAGE CONTAINER-->        
+			<div class="container-fluid">
+				<!-- BEGIN PAGE HEADER-->
+				<div class="row-fluid">
+					<div class="span12">            
+			  
+				{% include 'BaseBundle::alert.html.twig'  %}                
+				<!-- BEGIN PAGE CONTENT-->          
+ 
+				<div class="row-fluid">
+					<div class="span6">
+				{{ form_errors(form) }}
+
+									<div class="portlet box blue ">
+										<div class="portlet-title">
+											<div class="caption"><i class="icon-reorder"></i>Form Sample</div>
+											<div class="tools">
+												<a href="javascript:;" class="collapse"></a>
+												<a href="#portlet-config" data-toggle="modal" class="config"></a>
+												<a href="javascript:;" class="reload"></a>
+												<a href="javascript:;" class="remove"></a>
+											</div>
+										</div>
+										<div class="portlet-body form">
+											<!-- BEGIN FORM-->
+												<form action="{{ path('employee_create') }}" id="form" method="post" {{ form_enctype(form) }} class="form-horizontal form-bordered form-row-stripped" method="post">
+												{{ form_row(form._token) }} 
+
+												<div class="control-group">
+													<label class="control-label">Prénom</label>
+													<div class="controls">
+														
+														{{ form_widget(form.firstname,  {'attr': {'class': 'm-wrap span12', 'placeholder': ''} }) }}
+														<span class="help-inline"></span>
+													</div>
+												</div>
+
+												<div class="control-group">
+													<label class="control-label">Nom</label>
+													<div class="controls">
+														
+														{{ form_widget(form.lastname,  {'attr': {'class': 'm-wrap span12', 'placeholder': ''} }) }}
+														<span class="help-inline"></span>
+													</div>
+												</div>
+												</form>
+
+												<div class="form-actions">
+													<button type="submit" class="btn blue" onclick="$('form').submit()"><i class="icon-ok"></i> Créer</button>
+													<button type="button" class="btn" onclick="document.location.href='{{ path('employee') }}'"><i class="icon-undo"> Annuler</i></button>
+												</div>
+											
+											<!-- END FORM-->  
+										</div>
+									</div>
+					</div>
+				</div>
+				<!-- END PAGE CONTENT-->
+			</div>
+			<!-- END PAGE CONTAINER-->
+		</div>
+		<!-- END PAGE -->
+	
+
+
+{% endblock %}

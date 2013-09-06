@@ -1,0 +1,37 @@
+<div class="row-fluid">
+	<div class="span12">
+		<!-- BEGIN ALERTS PORTLET-->
+		<div class="portlet ">
+			<div class="portlet-body">	
+				{% for flashMessage in app.session.flashbag.get('success') %}
+					<div class="alert alert-success">
+						<button class="close" data-dismiss="alert"></button>
+						<strong>Succès!</strong> {{ flashMessage }}
+					</div>
+				{% endfor %}
+
+				{% for flashMessage in app.session.flashbag.get('alert') %}
+					<div class="alert">
+						<button class="close" data-dismiss="alert"></button>
+						<strong>Attention !</strong> {{ flashMessage }}
+					</div>
+				{% endfor %}
+
+				{% for flashMessage in app.session.flashbag.get('info') %}
+					<div class="alert alert-info">
+						<button class="close" data-dismiss="alert"></button>
+						<strong>Info !</strong> {{ flashMessage }}
+					</div>
+				{% endfor %}
+
+				{% for flashMessage in app.session.flashbag.get('error') %}
+					<div class="alert alert-error">
+						<button class="close" data-dismiss="alert"></button>
+						<strong>Erreur !</strong> {{ flashMessage }}
+					</div>
+				{% endfor %}
+			</div>
+		</div>
+		<!-- END ALERTS PORTLET-->
+	</div>
+</div>       

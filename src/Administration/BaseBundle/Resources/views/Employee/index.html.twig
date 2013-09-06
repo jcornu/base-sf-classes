@@ -1,0 +1,89 @@
+{% extends "BaseBundle::layout.html.twig" %}
+{% block content %}
+
+
+
+        <!-- BEGIN PAGE -->
+        <div class="page-content">
+            <!-- BEGIN SAMPLE PORTLET CONFIGURATION MODAL FORM-->
+            <div id="portlet-config" class="modal hide">
+                <div class="modal-header">
+                    <button data-dismiss="modal" class="close" type="button"></button>
+                    <h3>portlet Settings</h3>
+                </div>
+                <div class="modal-body">
+                    <p>Here will be a configuration form</p>
+                </div>
+            </div>
+            <!-- END SAMPLE PORTLET CONFIGURATION MODAL FORM-->
+            <!-- BEGIN PAGE CONTAINER-->        
+            <div class="container-fluid">
+
+                
+                
+                {# {{ wo_render_breadcrumbs() }}    #}       
+              
+                {% include 'BaseBundle::alert.html.twig'  %} 
+                <!-- BEGIN PAGE CONTENT-->          
+ 
+                <div class="row-fluid">
+                    <div class="span6">
+                        <!-- BEGIN SAMPLE TABLE PORTLET-->
+                        <div class="portlet box blue">
+                            <div class="portlet-title">
+                                <div class="caption"><i class="icon-bell"></i>Liste des Employées</div>
+                                
+                            </div>
+                            <div class="portlet-body form">
+
+                                <table class="table table-striped table-bordered table-advance table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th><i class=""></i> Id</th>
+                                            <th><i class=""></i> Prénom</th>
+                                            <th><i class=""></i> Nom</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for entity in entities %}
+                                        <tr>
+                                            <td class="highlight">
+                                                <div class="success"></div>
+                                                <a href="{{ path('employee_show', { 'id': entity.id }) }}">{{ entity.id }}</a>
+                                            </td>
+                                            <td class="hidden-phone">{{ entity.firstname }}</td>
+                                            <td><a href="{{ path('employee_show', { 'id': entity.id }) }}">{{ entity.lastname }}</a></td>
+                                            <td>
+                                                <a  href="{{ path('employee_show', { 'id': entity.id }) }}" class="btn mini blue"><i class="icon-eye-open"></i> Voir</a>
+                                                <a  href="{{ path('employee_edit', { 'id': entity.id }) }}" class="btn mini green"><i class="icon-edit"></i> Modifier</a>
+                                                
+                                                
+                                            </td>
+                                        </tr>
+                                        {% endfor %}
+                                     </tbody>
+                                </table>
+                                <div class="form-actions">                                    
+                                    <a  href="{{ path('employee_new') }}" class="btn blue"><i class="icon-eye-open"></i> Créer</a>
+                                </div>                                 
+                            </div>
+           
+                        </div>
+                        <!-- END SAMPLE TABLE PORTLET-->
+                    </div>
+                     
+                </div>
+                <!-- END PAGE CONTENT-->
+            </div>
+            <!-- END PAGE CONTAINER-->
+        </div>
+        <!-- END PAGE -->
+    </div>
+    <!-- END CONTAINER -->
+ 
+
+ 
+{% endblock %}
+
+

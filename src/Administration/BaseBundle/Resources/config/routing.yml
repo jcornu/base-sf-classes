@@ -1,0 +1,7 @@
+base_homepage:
+    pattern:  /
+    defaults: { _controller: BaseBundle:Base:index }
+
+base_employee:
+    resource:  "@BaseBundle/Resources/config/routing/employee.yml"
+    prefix: /employés
