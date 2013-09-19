@@ -1,4 +1,4 @@
-{% extends "MysygesCommonBundle::layout.html.twig" %}
+{% extends "BaseBundle::layout.html.twig" %}
 {% block content %}
 
 
@@ -21,11 +21,10 @@
                 <div class="row-fluid">
                     <div class="span12">
 
-                {{ wo_render_breadcrumbs() }}               
+                            
               
-                {% include 'MysygesCommonBundle::alert.html.twig'  %}                  
+                {% include 'BaseBundle::alert.html.twig'  %}                  
                 <!-- BEGIN PAGE CONTENT-->          
- 
                 <div class="row-fluid">
                     <div class="span6">
 
@@ -37,23 +36,39 @@
                                         </div>
                                         <div class="portlet-body form">
                                             <!-- BEGIN FORM-->
-                                                <form action="{{ path('admin_bu_update', { 'id': entity.id }) }}" id="form" method="post"  class="form-horizontal form-bordered form-row-stripped" method="post">
-                                                {{ form_widget(delete_form) }}
+                                                <form action="{{ path('employee_update', { 'id': entity.id }) }}" id="form" method="post"  class="form-horizontal form-bordered form-row-stripped" method="post">
 
                                                 <div class="control-group">
-                                                    <label class="control-label">Nom de la BU</label>
+                                                    <label class="control-label">Nom</label>
                                                     <div class="controls">                                                        
-                                                        {{ entity.name }} 
+                                                        {{ entity.lastname }} 
                                                         <span class="help-inline"></span>
                                                     </div>
                                                 </div>
+
+                                                <div class="control-group">
+                                                    <label class="control-label">Prénom</label>
+                                                    <div class="controls">                                                        
+                                                        {{ entity.firstname }} 
+                                                        <span class="help-inline"></span>
+                                                    </div>
+                                                </div>
+
                                                 </form>
 
                                                 <div class="form-actions">
-                                                    <button type="button" class="btn blue" onclick="document.location.href='{{ path('admin_bu_edit', { 'id': entity.id }) }}'"><i class="icon-ok"></i> Modifier</button>
-                                                    <button type="submit" class="btn red" onclick="$('#form').attr('action', '{{ path('admin_bu_delete', { 'id': entity.id }) }}' );$('form').submit()"><i class="icon-trash"> Supprimer</i></button>
-                                                    <button type="button" class="btn" onclick="document.location.href='{{ path('admin_bu') }}'"><i class="icon-undo"> Annuler</i></button>
+                                                    <button type="button" class="btn blue" onclick="document.location.href='{{ path('employee_edit', { 'id': entity.id }) }}'"><i class="icon-ok"></i> Modifier</button>
+                                                    <button type="submit" class="btn red" onclick="javascript: return  (confirm('Confirmez-vous la suppression ?') ? deleteaction(): false);"><i class="icon-trash"> Supprimer</i></button>
+                                                    <button type="button" class="btn" onclick="document.location.href='{{ path('employee') }}'"><i class="icon-undo"> Annuler</i></button>
                                                 </div>
+
+                                            <script>
+                                                function deleteaction()
+                                                {
+                                                    $('#form').attr('action', '{{ path('employee_delete', { 'id': entity.id }) }}' );
+                                                    $('#form').submit();
+                                                }
+                                            </script>
                                             
                                             <!-- END FORM-->  
                                         </div>

@@ -19,7 +19,7 @@
 			<!-- BEGIN PAGE CONTAINER-->        
 			<div class="container-fluid">            
 			  
-				{% include 'MysygesCommonBundle::alert.html.twig'  %}              
+				{% include 'BaseBundle::alert.html.twig'  %}              
 				<!-- BEGIN PAGE CONTENT-->          
  
 				<div class="row-fluid">
@@ -28,7 +28,7 @@
 
 									<div class="portlet box blue ">
 										<div class="portlet-title">
-											<div class="caption"><i class="icon-reorder"></i>Business Unit</div>
+											<div class="caption"><i class="icon-reorder"></i>Employé</div>
 											<div class="tools">
 															   
 											</div>
@@ -36,7 +36,7 @@
 										<div class="portlet-body form">
 											<!-- BEGIN FORM-->
 												<form action="{{ path('employee_update', { 'id': entity.id }) }}" id="form" method="post" {{ form_enctype(edit_form) }} class="form-horizontal form-bordered form-row-stripped" method="post">
-												{{ form_widget(delete_form) }}
+												
 												{{ form_row(edit_form._token) }} 
 
 												<div class="control-group">

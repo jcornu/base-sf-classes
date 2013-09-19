@@ -19,6 +19,20 @@ class EmployeeController extends Controller
 			));
 	}
 
+	public function showAction($id)
+	{
+		$em = $this->getDoctrine()->getManager();
+		$entity = $em->getRepository('BaseBundle:Employee')->find($id);
+
+		if (!$entity) {
+            throw $this->createNotFoundException('Unable to find Employee entity');
+        }
+
+        return $this->render('BaseBundle:Employee:show.html.twig', array(
+        	'entity' => $entity,
+        	));
+	}
+
 	public function newAction()
 	{
 		$entity = new Employee();
@@ -62,22 +76,49 @@ class EmployeeController extends Controller
 		}
 
 		$editForm = $this->createForm(new EmployeeType, $entity);
-		$deleteForm = $this->createDeleteForm($id);
 
 		return $this->render('BaseBundle:Employee:edit.html.twig', array(
 			'entity' => $entity,
 			'edit_form' => $editForm->createView(),
-			'delete_form' => $deleteForm->createView(),
 		));
 	}
 
-	public function updateAction()
+	public function updateAction(Request $request, $id)
 	{
-		return $this->render('BaseBundle:Employee:index.html.twig', array());
+		$em = $this->getDoctrine()->getManager();
+		$entity = $em->getRepository('BaseBundle:Employee')->find($id);
+
+		$edit_form = $this->createForm(new EmployeeType(), $entity);
+		$edit_form->bind($request);
+
+		if($edit_form->isValid())
+		{
+			$em->persist($entity);
+			$em->flush();
+			$this->get('session')->getFlashBag()->add('success', 'L\'utilisateur'.$entity->getFirstName().' '.$entity->getLastName().' a été mis à jour');
+			return $this->redirect($this->generateUrl('employee'));
+		}
+
+		return $this->render('BaseBundle:Employee:edit.html.twig', array(
+			'entity' => $entity,
+			'edit_form' => $editForm->createView(),
+		));
 	}
 
-	public function deleteAction()
+	public function deleteAction($id)
 	{
-		return $this->render('BaseBundle:Employee:index.html.twig', array());
+		$em = $this->getDoctrine()->getManager();
+		$entity = $em->getRepository('BaseBundle:Employee')->find($id);
+
+		if (!$entity) {
+				throw $this->createNotFoundException('Unable to find Bu entity.');
+		}
+
+		$em->remove($entity);
+		$em->flush();
+
+		$this->get('session')->getFlashBag()->add('success', 'L\'utilisateur '.$entity->getLastName().' a bien été supprimé');
+
+		return $this->redirect($this->generateUrl('employee'));
 	}
 }
